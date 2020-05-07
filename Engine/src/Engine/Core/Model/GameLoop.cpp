@@ -1,10 +1,10 @@
 #include <Engine/Core/Model/GameLoop.hpp>
 
-void orb::GameLoop::runScene(Scene &scene)
+void orb::GameLoop::pushScene(Scene &scene)
 {
 	scene.load();
 
-	while (scene.shouldRun() && m_shouldRun && !m_nextScene.has_value())
+	while (scene.shouldRun() && !m_shouldPop && m_shouldRun && !m_nextScene.has_value())
 	{
 		for (auto &layer : scene.getLayers())
 		{
@@ -21,8 +21,13 @@ void orb::GameLoop::runScene(Scene &scene)
 
 	if (m_nextScene.has_value())
 	{
-		runScene(m_nextScene.value());
+		pushScene(m_nextScene.value());
 		m_nextScene.reset();
+	}
+
+	if(m_shouldPop)
+	{
+		m_shouldPop = false;
 	}
 }
 
@@ -34,4 +39,9 @@ void orb::GameLoop::stop()
 void orb::GameLoop::swapScene(orb::Scene &scene)
 {
 	m_nextScene = scene;
+}
+
+void orb::GameLoop::popScene()
+{
+	m_shouldPop = true;
 }
