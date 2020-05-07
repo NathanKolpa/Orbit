@@ -7,7 +7,7 @@ namespace orb
 	class Layer
 	{
 	public:
-		explicit Layer(RenderTarget& target);
+		explicit Layer(RenderTarget* target);
 	public:
 		virtual void load();
 		virtual void unload();
@@ -20,7 +20,7 @@ namespace orb
 		void stop();
 		bool shouldRun() const;
 	private:
-		RenderTarget& m_renderTarget;
+		RenderTarget* m_renderTarget;
 		bool m_shouldRun = true;
 	};
 }

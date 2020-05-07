@@ -8,11 +8,11 @@ namespace orb
 	{
 	public:
 		void runScene(Scene& scene);
-		void swapScene(Scene* scene);
+		void swapScene(Scene& scene);
 
 		void stop();
 	private:
 		bool m_shouldRun = true;
-		Scene* m_nextScene = nullptr;
+		std::optional<Scene> m_nextScene;
 	};
 }

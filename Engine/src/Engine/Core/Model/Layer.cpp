@@ -1,6 +1,6 @@
 #include <Engine/Core/Model/Layer.hpp>
 
-orb::Layer::Layer(orb::RenderTarget &target)
+orb::Layer::Layer(orb::RenderTarget* target)
 		: m_renderTarget(target)
 {
 }
@@ -23,7 +23,7 @@ void orb::Layer::update(orb::TimeStep step)
 
 orb::RenderTarget &orb::Layer::getRenderTarget()
 {
-	return m_renderTarget;
+	return *m_renderTarget;
 }
 
 void orb::Layer::stop()
