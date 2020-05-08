@@ -9,3 +9,8 @@ void orb::LayerStack::popLayer()
 {
 	m_stack.pop_back();
 }
+
+void orb::LayerStack::onNext(orb::MouseMoveEvent &event)
+{
+	passEvent(event);
+}

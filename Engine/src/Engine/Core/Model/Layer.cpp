@@ -35,3 +35,8 @@ bool orb::Layer::shouldRun() const
 {
 	return m_shouldRun;
 }
+
+void orb::Layer::onNext(orb::MouseMoveEvent &event)
+{
+
+}

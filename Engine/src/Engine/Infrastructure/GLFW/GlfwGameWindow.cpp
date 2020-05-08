@@ -15,6 +15,15 @@ orb::GlfwGameWindow orb::GlfwGameWindow::createGlfwWindow(int width, int height,
 orb::GlfwGameWindow::GlfwGameWindow(GLFWwindow *window, int width, int height, const char* title)
 		: m_width(width), m_window(window), m_height(height), m_title(title)
 {
+	glfwSetWindowUserPointer(window, this);
+
+	glfwSetCursorPosCallback(window, [](GLFWwindow *window, double x, double y)
+	{
+		auto& self = *static_cast<GlfwGameWindow*>(glfwGetWindowUserPointer(window));
+
+		MouseMoveEvent event(x, y, 0, 0);
+		self.sendMessage(event);
+	});
 }
 
 

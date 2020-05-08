@@ -1,4 +1,5 @@
 #include <Engine/Engine.hpp>
+#include "TestLayer.hpp"
 
 int main()
 {
@@ -8,8 +9,11 @@ int main()
 
 		orb::Application app(gameWindow);
 		orb::Scene scene;
-		orb::Layer layer(gameWindow);
+
+		TestLayer layer(gameWindow);
 		scene.getLayers().pushLayer(layer);
+
+		auto unsub = gameWindow.subscribe(scene.getLayers());
 
 		app.getLoop().pushScene(scene);
 	}

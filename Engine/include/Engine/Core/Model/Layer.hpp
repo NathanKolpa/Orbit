@@ -1,10 +1,12 @@
 #pragma once
 #include "RenderTarget.hpp"
 #include "Engine/Core/Model/Timing/TimeStep.hpp"
+#include "Events/Observer.hpp"
+#include "Input/MouseMoveEvent.hpp"
 
 namespace orb
 {
-	class Layer
+	class Layer : public Observer<MouseMoveEvent>
 	{
 	public:
 		explicit Layer(RenderTarget& target);
@@ -19,6 +21,8 @@ namespace orb
 
 		void stop();
 		bool shouldRun() const;
+
+		void onNext(MouseMoveEvent &event) override;
 	private:
 		RenderTarget* m_renderTarget;
 		bool m_shouldRun = true;

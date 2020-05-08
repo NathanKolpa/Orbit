@@ -2,12 +2,14 @@
 
 #include <Engine/Core/Model/RenderTarget.hpp>
 #include <Engine/Core/Model/Window/GameWindow.hpp>
+#include <Engine/Core/Model/Events/Obervable.hpp>
+#include <Engine/Core/Model/Input/MouseMoveEvent.hpp>
 
 struct GLFWwindow;
 
 namespace orb
 {
-	class GlfwGameWindow : public GameWindow, public RenderTarget
+	class GlfwGameWindow : public GameWindow, public RenderTarget, public Observable<MouseMoveEvent>
 	{
 	public:
 		static GlfwGameWindow createGlfwWindow(int width, int height, const char* title);
