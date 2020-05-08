@@ -1,8 +1,8 @@
 #include <Engine/Core/Model/LayerStack.hpp>
 
-orb::Layer& orb::LayerStack::pushLayer(RenderTarget& target)
+void orb::LayerStack::pushLayer(Layer& layer)
 {
-	return m_stack.emplace_back(Layer(&target));
+	m_stack.emplace_back(layer);
 }
 
 void orb::LayerStack::popLayer()

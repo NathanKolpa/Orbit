@@ -7,13 +7,13 @@ namespace orb
 	class Layer
 	{
 	public:
-		explicit Layer(RenderTarget* target);
+		explicit Layer(RenderTarget& target);
 	public:
 		virtual void load();
 		virtual void unload();
 
 		virtual void render();
-		virtual void update(TimeStep step);
+		virtual void update(TimeStep& step);
 
 		RenderTarget& getRenderTarget();
 

@@ -4,3 +4,8 @@ orb::GameLoop &orb::Application::getLoop()
 {
 	return m_gameLoop;
 }
+
+orb::Application::Application(GameWindow& window)
+	:m_gameLoop(window)
+{
+}

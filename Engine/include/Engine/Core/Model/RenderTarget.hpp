@@ -7,6 +7,7 @@ namespace orb
 	public:
 		virtual void bindContext() = 0;
 		virtual void unbindContext() = 0;
+		virtual void clear() = 0;
 	};
 }
 

@@ -4,17 +4,15 @@ void orb::GameLoop::pushScene(Scene &scene)
 {
 	scene.load();
 
-	while (scene.shouldRun() && !m_shouldPop && m_shouldRun && !m_nextScene.has_value())
+	while (scene.shouldRun() && !m_shouldPop && m_shouldRun && !m_nextScene.has_value() && m_gameWindow->isOpen())
 	{
-		for (auto &layer : scene.getLayers())
-		{
-			layer.update(TimeStep());
-		}
+		m_gameWindow->pollEvents();
 
-		for (auto &layer : scene.getLayers())
-		{
-			layer.render();
-		}
+		scene.update(TimeStep());
+
+		scene.render();
+
+		m_gameWindow->display();
 	}
 
 	scene.unload();
@@ -44,4 +42,10 @@ void orb::GameLoop::swapScene(orb::Scene &scene)
 void orb::GameLoop::popScene()
 {
 	m_shouldPop = true;
+}
+
+orb::GameLoop::GameLoop(orb::GameWindow &window)
+	:m_gameWindow(&window)
+{
+
 }

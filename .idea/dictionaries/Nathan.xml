@@ -3,6 +3,7 @@
     <words>
       <w>cbegin</w>
       <w>cend</w>
+      <w>glfw</w>
       <w>orbitengine</w>
     </words>
   </dictionary>

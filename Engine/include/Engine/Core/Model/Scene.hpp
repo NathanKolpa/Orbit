@@ -9,6 +9,8 @@ namespace orb
 		bool shouldRun() const;
 		void load();
 		void unload();
+		void update(TimeStep step);
+		void render();
 
 		LayerStack& getLayers();
 	private:
