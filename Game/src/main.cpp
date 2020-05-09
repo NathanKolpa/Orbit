@@ -4,8 +4,11 @@
 int main()
 {
 	orb::GlfwGameWindow::initLibrary();
+	orb::OpenGL::init();
+
 	{
 		orb::GlfwGameWindow gameWindow = orb::GlfwGameWindow::createGlfwWindow(1280, 720, "Hello World");
+		gameWindow.setContext();
 
 		orb::Application app(gameWindow);
 		orb::Scene scene;
@@ -19,5 +22,7 @@ int main()
 
 		app.getLoop().pushScene(scene);
 	}
+
+	orb::OpenGL::destroy();
 	orb::GlfwGameWindow::destroyLibrary();
 }

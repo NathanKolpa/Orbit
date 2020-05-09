@@ -9,6 +9,7 @@ orb::GlfwGameWindow orb::GlfwGameWindow::createGlfwWindow(int width, int height,
 		throw std::runtime_error("cannot create GLFW window");
 	}
 
+
 	return GlfwGameWindow(window, width, height, title);
 }
 
@@ -56,7 +57,6 @@ orb::GlfwGameWindow::GlfwGameWindow(GLFWwindow *window, int width, int height, c
 		{
 			std::wcerr << e.what() << std::endl;
 		}
-
 	});
 }
 
@@ -131,4 +131,9 @@ orb::Observable<orb::MouseMoveEvent> &orb::GlfwGameWindow::getMouseMoveObservabl
 orb::Observable<orb::MouseButtonEvent> &orb::GlfwGameWindow::getMouseButtonEmitter()
 {
 	return m_mouseButtonEmitter;
+}
+
+void orb::GlfwGameWindow::setContext()
+{
+	glfwMakeContextCurrent(m_window);
 }

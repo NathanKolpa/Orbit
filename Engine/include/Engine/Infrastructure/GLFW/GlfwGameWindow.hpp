@@ -23,6 +23,8 @@ namespace orb
 	public:
 		~GlfwGameWindow();
 	public:
+		void setContext();
+
 		void pollEvents() override;
 		bool isOpen() override;
 		void display() override;
