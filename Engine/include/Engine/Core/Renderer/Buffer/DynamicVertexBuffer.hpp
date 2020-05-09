@@ -7,6 +7,6 @@ namespace orb
 	class DynamicVertexBuffer : public VertexBuffer
 	{
 	public:
-		void setData(float[] data);
+		void setData(float* data);
 	};
 }

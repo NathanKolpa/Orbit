@@ -6,6 +6,7 @@
 #include <Engine/Core/Model/Input/KeyboardKeyEvent.hpp>
 #include <Engine/Core/Model/Input/MouseMoveEvent.hpp>
 #include <Engine/Core/Model/Input/MouseButtonEvent.hpp>
+#include <Engine/Core/Renderer/RenderContext.hpp>
 #include "GlfwKeyMapper.hpp"
 #include "GlfwInputTypeMapper.hpp"
 #include "GlfwButtonMapper.hpp"
@@ -14,7 +15,7 @@ struct GLFWwindow;
 
 namespace orb
 {
-	class GlfwGameWindow : public GameWindow, public RenderTarget
+	class GlfwGameWindow : public GameWindow, public RenderTarget, public RenderContext
 	{
 	public:
 		static GlfwGameWindow createGlfwWindow(int width, int height, const char* title);
@@ -23,7 +24,7 @@ namespace orb
 	public:
 		~GlfwGameWindow();
 	public:
-		void setContext();
+		void setContext() override;
 
 		void pollEvents() override;
 		bool isOpen() override;

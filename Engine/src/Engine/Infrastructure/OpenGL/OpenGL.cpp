@@ -3,10 +3,29 @@
 #include <GLFW/glfw3.h>
 #include <Engine/Core/pch.hpp>
 
-void orb::OpenGL::init()
+
+void orb::OpenGL::init(orb::RenderContext &context)
 {
-	if (!gladLoadGLLoader((GLADloadproc) glfwGetProcAddress))
+	context.setContext();
+
+	int status = gladLoadGLLoader((GLADloadproc) glfwGetProcAddress);
+	if (!status)
 	{
-		std::runtime_error("Cannot init glad");
+		throw std::runtime_error("Cannot init glad");
 	}
+}
+
+void orb::OpenGL::destroy()
+{
+
+}
+
+orb::RenderFactory &orb::OpenGL::getFactory()
+{
+	return m_factory;
+}
+
+const char *orb::OpenGL::getVersionString()
+{
+	return (const char*)glGetString(GL_VERSION);
 }

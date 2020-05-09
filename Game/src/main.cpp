@@ -4,25 +4,25 @@
 int main()
 {
 	orb::GlfwGameWindow::initLibrary();
-	orb::OpenGL::init();
+	orb::GlfwGameWindow gameWindow = orb::GlfwGameWindow::createGlfwWindow(1280, 720, "Hello World");
+	orb::OpenGL opengl;
+	opengl.init(gameWindow);
 
-	{
-		orb::GlfwGameWindow gameWindow = orb::GlfwGameWindow::createGlfwWindow(1280, 720, "Hello World");
-		gameWindow.setContext();
+	std::cout << "Using OpenGL version: [" << opengl.getVersionString() << "]" << std::endl;
 
-		orb::Application app(gameWindow);
-		orb::Scene scene;
+	orb::Application app(gameWindow, opengl);
+	orb::Scene scene;
 
-		TestLayer layer(gameWindow);
-		scene.getLayers().pushLayer(layer);
+	TestLayer layer(gameWindow);
+	scene.getLayers().pushLayer(layer);
 
-		auto mouseMoveSub = gameWindow.getMouseMoveObservable().subscribe(app.getLoop());
-		auto keySub = gameWindow.getKeyboardKeyObservable().subscribe(app.getLoop());
-		auto buttonSub = gameWindow.getMouseButtonEmitter().subscribe(app.getLoop());
+	// TODO: deze code uit de main
+	auto mouseMoveSub = gameWindow.getMouseMoveObservable().subscribe(app.getLoop());
+	auto keySub = gameWindow.getKeyboardKeyObservable().subscribe(app.getLoop());
+	auto buttonSub = gameWindow.getMouseButtonEmitter().subscribe(app.getLoop());
 
-		app.getLoop().pushScene(scene);
-	}
+	app.getLoop().pushScene(scene);
 
-	orb::OpenGL::destroy();
+	opengl.destroy();
 	orb::GlfwGameWindow::destroyLibrary();
 }

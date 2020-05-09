@@ -5,7 +5,12 @@ orb::GameLoop &orb::Application::getLoop()
 	return m_gameLoop;
 }
 
-orb::Application::Application(GameWindow& window)
-	:m_gameLoop(window)
+orb::Application::Application(GameWindow &window, RenderApi &renderApi)
+		: m_gameLoop(window), m_renderApi(renderApi)
 {
+}
+
+void orb::Application::run(orb::Scene &scene)
+{
+	getLoop().pushScene(scene);
 }
