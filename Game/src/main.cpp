@@ -13,7 +13,7 @@ int main()
 		TestLayer layer(gameWindow);
 		scene.getLayers().pushLayer(layer);
 
-		auto unsub = gameWindow.subscribe(scene.getLayers());
+		auto sub = gameWindow.subscribe(app.getLoop());
 
 		app.getLoop().pushScene(scene);
 	}

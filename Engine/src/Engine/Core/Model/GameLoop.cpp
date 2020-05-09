@@ -2,20 +2,27 @@
 
 void orb::GameLoop::pushScene(Scene &scene)
 {
+	Scene* lastScene = m_topScene;
+	m_topScene = &scene;
+
 	scene.load();
 
-	while (scene.shouldRun() && !m_shouldPop && m_shouldRun && !m_nextScene.has_value() && m_gameWindow->isOpen())
 	{
-		m_gameWindow->pollEvents();
+		while (scene.shouldRun() && !m_shouldPop && m_shouldRun && !m_nextScene.has_value() && m_gameWindow->isOpen())
+		{
+			m_gameWindow->pollEvents();
 
-		scene.update(TimeStep());
+			scene.update(TimeStep());
 
-		scene.render();
+			scene.render();
 
-		m_gameWindow->display();
+			m_gameWindow->display();
+		}
 	}
 
 	scene.unload();
+
+	m_topScene = lastScene;
 
 	if (m_nextScene.has_value())
 	{
@@ -48,4 +55,17 @@ orb::GameLoop::GameLoop(orb::GameWindow &window)
 	:m_gameWindow(&window)
 {
 
+}
+
+void orb::GameLoop::onNext(orb::MouseMoveEvent &event)
+{
+	if(m_topScene)
+	{
+		m_topScene->getLayers().onNext(event);
+	}
+}
+
+orb::Scene &orb::GameLoop::getCurrentScene()
+{
+	return *m_topScene;
 }
