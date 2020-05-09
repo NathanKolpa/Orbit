@@ -5,7 +5,7 @@
 
 namespace orb
 {
-	class GameLoop : public Observer<MouseMoveEvent>
+	class GameLoop : public InputObserver
 	{
 	public:
 		GameLoop(GameWindow& window);
@@ -18,6 +18,7 @@ namespace orb
 		Scene& getCurrentScene();
 
 		void onNext(MouseMoveEvent &event) override;
+		void onNext(KeyboardKeyEvent &event) override;
 	private:
 		bool m_shouldRun = true;
 		bool m_shouldPop = false;

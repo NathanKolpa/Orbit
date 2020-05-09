@@ -14,3 +14,8 @@ void orb::LayerStack::onNext(orb::MouseMoveEvent &event)
 {
 	passEvent(event);
 }
+
+void orb::LayerStack::onNext(orb::KeyboardKeyEvent &event)
+{
+	passEvent(event);
+}

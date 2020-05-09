@@ -40,3 +40,8 @@ void orb::Layer::onNext(orb::MouseMoveEvent &event)
 {
 
 }
+
+void orb::Layer::onNext(orb::KeyboardKeyEvent &event)
+{
+
+}

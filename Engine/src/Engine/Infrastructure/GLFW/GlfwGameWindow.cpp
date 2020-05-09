@@ -22,7 +22,15 @@ orb::GlfwGameWindow::GlfwGameWindow(GLFWwindow *window, int width, int height, c
 		auto& self = *static_cast<GlfwGameWindow*>(glfwGetWindowUserPointer(window));
 
 		MouseMoveEvent event(x, y, 0, 0);
-		self.sendMessage(event);
+		self.m_mouseMoveEmitter.emit(event);
+	});
+
+	glfwSetKeyCallback(window, [](GLFWwindow* window, int key, int scanCode, int action, int mods)
+	{
+		auto& self = *static_cast<GlfwGameWindow*>(glfwGetWindowUserPointer(window));
+
+		KeyboardKeyEvent event(self.m_keyMapper.getKey(key), self.m_inputTypeMapper.getType(action));
+		self.m_keyboardKeyEmitter.emit(event);
 	});
 }
 
@@ -83,4 +91,14 @@ bool orb::GlfwGameWindow::isOpen()
 void orb::GlfwGameWindow::display()
 {
 	glfwSwapBuffers(m_window);
+}
+
+orb::Observable<orb::KeyboardKeyEvent>& orb::GlfwGameWindow::getKeyboardKeyObservable()
+{
+	return m_keyboardKeyEmitter;
+}
+
+orb::Observable<orb::MouseMoveEvent> &orb::GlfwGameWindow::getMouseMoveObservable()
+{
+	return m_mouseMoveEmitter;
 }

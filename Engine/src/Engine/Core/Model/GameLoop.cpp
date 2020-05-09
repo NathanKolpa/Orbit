@@ -57,6 +57,11 @@ orb::GameLoop::GameLoop(orb::GameWindow &window)
 
 }
 
+orb::Scene &orb::GameLoop::getCurrentScene()
+{
+	return *m_topScene;
+}
+
 void orb::GameLoop::onNext(orb::MouseMoveEvent &event)
 {
 	if(m_topScene)
@@ -65,7 +70,10 @@ void orb::GameLoop::onNext(orb::MouseMoveEvent &event)
 	}
 }
 
-orb::Scene &orb::GameLoop::getCurrentScene()
+void orb::GameLoop::onNext(orb::KeyboardKeyEvent &event)
 {
-	return *m_topScene;
+	if(m_topScene)
+	{
+		m_topScene->getLayers().onNext(event);
+	}
 }

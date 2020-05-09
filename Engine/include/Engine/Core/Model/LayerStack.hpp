@@ -6,13 +6,14 @@
 
 namespace orb
 {
-	class LayerStack : public Observer<MouseMoveEvent>
+	class LayerStack : public InputObserver
 	{
 	public:
 		void pushLayer(Layer& layer);
 		void popLayer();
 
 		void onNext(MouseMoveEvent &event) override;
+		void onNext(KeyboardKeyEvent &event) override;
 	public:
 		typedef typename std::vector<std::reference_wrapper<Layer>>::iterator iterator;
 		typedef typename std::vector<std::reference_wrapper<Layer>>::const_iterator const_iterator;

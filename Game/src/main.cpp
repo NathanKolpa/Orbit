@@ -13,7 +13,8 @@ int main()
 		TestLayer layer(gameWindow);
 		scene.getLayers().pushLayer(layer);
 
-		auto sub = gameWindow.subscribe(app.getLoop());
+		auto mouseMoveSub = gameWindow.getMouseMoveObservable().subscribe(app.getLoop());
+		auto keySub = gameWindow.getKeyboardKeyObservable().subscribe(app.getLoop());
 
 		app.getLoop().pushScene(scene);
 	}
