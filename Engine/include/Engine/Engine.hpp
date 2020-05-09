@@ -20,11 +20,10 @@
 
 #include "Core/Renderer/Buffer/Layout/BufferLayout.hpp"
 #include "Core/Renderer/RenderContext.hpp"
-#include "Core/Renderer/RenderFactory.hpp"
 #include "Core/Renderer/RenderApi.hpp"
 
 // GLFW
 #include "Engine/Infrastructure/GLFW/GlfwGameWindow.hpp"
 
 // OpenGL
-#include "Engine/Infrastructure/OpenGL/OpenGL.hpp"
+#include "Engine/Infrastructure/OpenGL/OpenGLApi.hpp"
