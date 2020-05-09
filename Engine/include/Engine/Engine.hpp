@@ -19,3 +19,5 @@
 #include "Core/Model/Events/Obervable.hpp"
 #include "Core/Model/Events/Observer.hpp"
 #include "Core/Model/Events/Unsubscriber.hpp"
+
+#include "Core/Renderer/Buffer/Layout/BufferLayout.hpp"
