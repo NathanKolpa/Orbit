@@ -1,5 +1,6 @@
 #include <Engine/Infrastructure/GLFW/GlfwKeyMapper.hpp>
 #include <GLFW/glfw3.h>
+#include <Engine/Core/pch.hpp>
 
 orb::GlfwKeyMapper::GlfwKeyMapper()
 {
@@ -80,5 +81,10 @@ orb::GlfwKeyMapper::GlfwKeyMapper()
 
 orb::KeyboardKey orb::GlfwKeyMapper::getKey(int code)
 {
+	if(m_map.find(code) == m_map.end())
+	{
+		throw std::invalid_argument("Unknown key code");
+	}
+
 	return m_map[code];
 }

@@ -15,6 +15,7 @@ int main()
 
 		auto mouseMoveSub = gameWindow.getMouseMoveObservable().subscribe(app.getLoop());
 		auto keySub = gameWindow.getKeyboardKeyObservable().subscribe(app.getLoop());
+		auto buttonSub = gameWindow.getMouseButtonEmitter().subscribe(app.getLoop());
 
 		app.getLoop().pushScene(scene);
 	}

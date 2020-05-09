@@ -45,3 +45,8 @@ void orb::Layer::onNext(orb::KeyboardKeyEvent &event)
 {
 
 }
+
+void orb::Layer::onNext(orb::MouseButtonEvent &event)
+{
+
+}

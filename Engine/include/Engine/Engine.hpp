@@ -14,6 +14,7 @@
 #include "Core/Model/Input/InputType.hpp"
 #include "Engine/Core/Model/Input/MouseMoveEvent.hpp"
 #include "Engine/Core/Model/Input/KeyboardKeyEvent.hpp"
+#include "Engine/Core/Model/Input/MouseButtonEvent.hpp"
 
 #include "Core/Model/Events/Obervable.hpp"
 #include "Core/Model/Events/Observer.hpp"

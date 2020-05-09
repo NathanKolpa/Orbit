@@ -1,9 +1,5 @@
 #include "TestLayer.hpp"
 
-void TestLayer::onNext(orb::MouseMoveEvent &event)
-{
-}
-
 TestLayer::TestLayer(orb::RenderTarget &target) : Layer(target)
 {
 

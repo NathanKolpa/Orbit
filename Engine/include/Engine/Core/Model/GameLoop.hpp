@@ -19,6 +19,7 @@ namespace orb
 
 		void onNext(MouseMoveEvent &event) override;
 		void onNext(KeyboardKeyEvent &event) override;
+		void onNext(MouseButtonEvent &event) override;
 	private:
 		bool m_shouldRun = true;
 		bool m_shouldPop = false;

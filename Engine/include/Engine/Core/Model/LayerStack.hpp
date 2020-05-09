@@ -14,6 +14,7 @@ namespace orb
 
 		void onNext(MouseMoveEvent &event) override;
 		void onNext(KeyboardKeyEvent &event) override;
+		void onNext(MouseButtonEvent &event) override;
 	public:
 		typedef typename std::vector<std::reference_wrapper<Layer>>::iterator iterator;
 		typedef typename std::vector<std::reference_wrapper<Layer>>::const_iterator const_iterator;

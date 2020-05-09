@@ -77,3 +77,11 @@ void orb::GameLoop::onNext(orb::KeyboardKeyEvent &event)
 		m_topScene->getLayers().onNext(event);
 	}
 }
+
+void orb::GameLoop::onNext(orb::MouseButtonEvent &event)
+{
+	if(m_topScene)
+	{
+		m_topScene->getLayers().onNext(event);
+	}
+}

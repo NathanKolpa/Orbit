@@ -23,6 +23,7 @@ namespace orb
 
 		void onNext(MouseMoveEvent &event) override;
 		void onNext(KeyboardKeyEvent &event) override;
+		void onNext(MouseButtonEvent &event) override;
 	private:
 		RenderTarget* m_renderTarget;
 		bool m_shouldRun = true;
