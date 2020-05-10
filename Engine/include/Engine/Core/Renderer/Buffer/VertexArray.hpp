@@ -2,8 +2,10 @@
 
 namespace orb
 {
-	class VertexBuffer
+	class VertexArray
 	{
+	public:
+		virtual ~VertexArray() = default;
 	public:
 		virtual void bind() = 0;
 		virtual void unBind() = 0;

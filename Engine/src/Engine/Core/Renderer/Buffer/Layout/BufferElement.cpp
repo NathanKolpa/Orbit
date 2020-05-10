@@ -10,3 +10,8 @@ int orb::BufferElement::getElementCount() const
 {
 	return m_elementCount;
 }
+
+int orb::BufferElement::getSizeInBytes() const
+{
+	return m_elementCount * sizeof(float);
+}

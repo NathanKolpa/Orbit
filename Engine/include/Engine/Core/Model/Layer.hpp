@@ -8,15 +8,13 @@ namespace orb
 	class Layer : public InputObserver
 	{
 	public:
-		explicit Layer(RenderTarget& target);
+		explicit Layer() = default;
 	public:
 		virtual void load();
 		virtual void unload();
 
 		virtual void render();
 		virtual void update(TimeStep& step);
-
-		RenderTarget& getRenderTarget();
 
 		void stop();
 		bool shouldRun() const;
@@ -25,7 +23,6 @@ namespace orb
 		void onNext(KeyboardKeyEvent &event) override;
 		void onNext(MouseButtonEvent &event) override;
 	private:
-		RenderTarget* m_renderTarget;
 		bool m_shouldRun = true;
 	};
 }

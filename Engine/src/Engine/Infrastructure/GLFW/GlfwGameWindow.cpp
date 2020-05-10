@@ -1,4 +1,5 @@
 #include <Engine/Infrastructure/GLFW/GlfwGameWindow.hpp>
+#include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
 orb::GlfwGameWindow orb::GlfwGameWindow::createGlfwWindow(int width, int height, const char *title)
@@ -77,7 +78,8 @@ void orb::GlfwGameWindow::unbindContext()
 
 void orb::GlfwGameWindow::clear()
 {
-
+	glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
+	glClear(GL_COLOR_BUFFER_BIT);
 }
 
 int orb::GlfwGameWindow::getWidth()
@@ -136,4 +138,9 @@ orb::Observable<orb::MouseButtonEvent> &orb::GlfwGameWindow::getMouseButtonEmitt
 void orb::GlfwGameWindow::setContext()
 {
 	glfwMakeContextCurrent(m_window);
+}
+
+void orb::GlfwGameWindow::clearBuffer()
+{
+	clear();
 }

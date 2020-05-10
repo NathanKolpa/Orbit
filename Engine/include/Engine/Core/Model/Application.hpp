@@ -8,12 +8,11 @@ namespace orb
 	class Application
 	{
 	public:
-		Application(GameWindow& window, RenderApi& renderApi);
+		Application(GameWindow& window);
 	public:
 		void run(Scene& scene);
 		GameLoop& getLoop();
 	private:
 		GameLoop m_gameLoop;
-		std::reference_wrapper<RenderApi> m_renderApi;
 	};
 }

@@ -12,5 +12,6 @@ namespace orb
 		virtual void pollEvents() = 0;
 		virtual bool isOpen() = 0;
 		virtual void display() = 0;
+		virtual void clearBuffer() = 0;
 	};
 }

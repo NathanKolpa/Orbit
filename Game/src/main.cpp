@@ -9,8 +9,9 @@ int main()
 
 	std::cout << "Using OpenGL version: [" << opengl.getVersionString() << "]" << std::endl;
 
-	orb::Application app(gameWindow, opengl);
+	orb::Renderer2D renderer(opengl);
 
+	orb::Application app(gameWindow);
 
 	// TODO: deze code uit de main
 	auto mouseMoveSub = gameWindow.getMouseMoveObservable().subscribe(app.getLoop());
@@ -18,7 +19,7 @@ int main()
 	auto buttonSub = gameWindow.getMouseButtonEmitter().subscribe(app.getLoop());
 
 	orb::Scene scene;
-	TestLayer layer(gameWindow);
+	TestLayer layer(renderer);
 	scene.getLayers().pushLayer(layer);
 
 	app.run(scene);

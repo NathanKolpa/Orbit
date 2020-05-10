@@ -30,6 +30,7 @@ namespace orb
 		bool isOpen() override;
 		void display() override;
 
+		void clearBuffer() override;
 		void clear() override;
 		void bindContext() override;
 		void unbindContext() override;

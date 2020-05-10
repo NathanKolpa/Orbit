@@ -1,6 +1,8 @@
 #pragma once
 
 #include "RenderContext.hpp"
+#include "Engine/Core/Renderer/Buffer/VertexArray.hpp"
+#include "Buffer/Layout/BufferLayout.hpp"
 
 namespace orb
 {
@@ -8,5 +10,6 @@ namespace orb
 	{
 	public:
 		virtual const char* getVersionString() = 0;
+		virtual VertexArray *createVertexArray() = 0;
 	};
 }
