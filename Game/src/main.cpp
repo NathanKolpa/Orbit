@@ -28,7 +28,7 @@ void run()
 
 	orb::Renderer2D renderer(opengl);
 
-	orb::Application app(gameWindow);
+	orb::Application app(opengl, gameWindow);
 
 	// TODO: deze code uit de main
 	auto mouseMoveSub = gameWindow.getMouseMoveObservable().subscribe(app.getLoop());

@@ -41,6 +41,7 @@ namespace orb
 		Observable<KeyboardKeyEvent>& getKeyboardKeyObservable();
 		Observable<MouseMoveEvent>& getMouseMoveObservable();
 		Observable<MouseButtonEvent>& getMouseButtonEmitter();
+		Observable<ResizeEvent> &getResizeObservable() override;
 	private:
 		GlfwGameWindow(GLFWwindow* window, int width, int height, const char* title);
 	private:
@@ -52,6 +53,7 @@ namespace orb
 		EventEmitter<KeyboardKeyEvent> m_keyboardKeyEmitter;
 		EventEmitter<MouseMoveEvent> m_mouseMoveEmitter;
 		EventEmitter<MouseButtonEvent> m_mouseButtonEmitter;
+		EventEmitter<ResizeEvent> m_resizeEmitter;
 
 		GlfwKeyMapper m_keyMapper;
 		GlfwInputTypeMapper m_inputTypeMapper;

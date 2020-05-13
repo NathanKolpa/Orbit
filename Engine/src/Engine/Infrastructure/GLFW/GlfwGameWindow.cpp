@@ -59,6 +59,14 @@ orb::GlfwGameWindow::GlfwGameWindow(GLFWwindow *window, int width, int height, c
 			std::wcerr << e.what() << std::endl;
 		}
 	});
+
+	glfwSetWindowSizeCallback(window, [](GLFWwindow* window, int width, int height)
+	{
+		auto &self = *static_cast<GlfwGameWindow *>(glfwGetWindowUserPointer(window));
+
+		ResizeEvent resizeEvent(width, height);
+		self.m_resizeEmitter.emit(resizeEvent);
+	});
 }
 
 orb::GlfwGameWindow::~GlfwGameWindow()
@@ -143,4 +151,9 @@ void orb::GlfwGameWindow::setContext()
 void orb::GlfwGameWindow::clearBuffer()
 {
 	clear();
+}
+
+orb::Observable<orb::ResizeEvent> &orb::GlfwGameWindow::getResizeObservable()
+{
+	return m_resizeEmitter;
 }

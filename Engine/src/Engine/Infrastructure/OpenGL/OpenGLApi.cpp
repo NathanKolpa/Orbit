@@ -48,3 +48,8 @@ orb::VertexArray *orb::OpenGLApi::createVertexArray()
 	return GlVertexArray::create();
 }
 
+void orb::OpenGLApi::setViewport(int x, int y, int width, int height)
+{
+	glViewport(x, y, width, height);
+}
+

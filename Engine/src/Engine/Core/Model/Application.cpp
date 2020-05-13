@@ -5,12 +5,16 @@ orb::GameLoop &orb::Application::getLoop()
 	return m_gameLoop;
 }
 
-orb::Application::Application(GameWindow &window)
-		: m_gameLoop(window)
+orb::Application::Application(RenderApi& renderApi, GameWindow &window)
+		: m_gameLoop(window), m_renderApi(renderApi), m_gameWindow(window)
 {
 }
 
 void orb::Application::run(orb::Scene &scene)
 {
+	ResizeHandler resizeHandler(m_renderApi);
+
+	auto resizeSub = m_gameWindow.get().getResizeObservable().subscribe(resizeHandler);
+
 	getLoop().pushScene(scene);
 }
