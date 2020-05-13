@@ -1,7 +1,7 @@
 #include <Engine/Core/Renderer/Buffer/Layout/BufferElement.hpp>
 
-orb::BufferElement::BufferElement(int elementCount)
-		: m_elementCount(elementCount)
+orb::BufferElement::BufferElement(int elementIndex, int elementCount)
+		: m_elementCount(elementCount), m_elementIndex(elementIndex)
 {
 
 }
@@ -13,5 +13,10 @@ int orb::BufferElement::getElementCount() const
 
 int orb::BufferElement::getSizeInBytes() const
 {
-	return m_elementCount * sizeof(float);
+	return m_elementCount * (int)sizeof(float);
+}
+
+int orb::BufferElement::getElementIndex() const
+{
+	return m_elementIndex;
 }

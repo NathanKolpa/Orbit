@@ -45,5 +45,6 @@ orb::OpenGLApi orb::OpenGLApi::create(orb::RenderContext &context)
 
 orb::VertexArray *orb::OpenGLApi::createVertexArray()
 {
-	return nullptr;
+	return GlVertexArray::create();
 }
+

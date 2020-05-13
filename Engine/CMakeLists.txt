@@ -1,5 +1,6 @@
 project(Engine)
 
+add_definitions(-DORB_SAFE)
 
 file(GLOB_RECURSE Engine_SOURCES "src/**.cpp")
 add_library(${PROJECT_NAME} ${Engine_SOURCES})

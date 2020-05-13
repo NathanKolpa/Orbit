@@ -20,6 +20,15 @@ TestLayer::TestLayer(orb::Renderer2D &renderer)
 
 void TestLayer::render()
 {
+
+	m_vertexBuffer->bind();
+	m_vertexBuffer->setData(data, sizeof(data));
+	m_vertexBuffer->unBind();
+
+	m_vertexArray->bind();
+	m_vertexArray->draw(3);
+	m_vertexArray->unBind();
+
 	m_renderer.get().beginScene();
 
 	m_renderer.get().endScene();
@@ -33,8 +42,12 @@ void TestLayer::unload()
 void TestLayer::load()
 {
 	orb::BufferLayout layout({
-		orb::BufferElement(2)
+		orb::BufferElement(0, 2)
 	});
 
 	m_vertexArray = m_renderer.get().getApi().createVertexArray();
+
+	m_vertexArray->bind();
+	m_vertexBuffer = m_vertexArray->addVertexBuffer(layout, nullptr, 3);
+	m_vertexArray->unBind();
 }

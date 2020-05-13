@@ -15,6 +15,7 @@ public:
 private:
 	std::reference_wrapper<orb::Renderer2D> m_renderer;
 	orb::VertexArray* m_vertexArray;
+	orb::VertexBuffer* m_vertexBuffer;
 };
 
 

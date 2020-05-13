@@ -2,6 +2,7 @@
 
 #include <Engine/Core/Renderer/RenderApi.hpp>
 #include "GlVertexArray.hpp"
+#include "GlVertexBuffer.hpp"
 
 namespace orb
 {
