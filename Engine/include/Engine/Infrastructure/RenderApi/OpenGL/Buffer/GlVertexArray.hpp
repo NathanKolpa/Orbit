@@ -1,4 +1,5 @@
 #pragma once
+#ifdef ORB_OPENGL
 
 #include <Engine/Core/Renderer/Buffer/VertexArray.hpp>
 #include <Engine/Core/Renderer/Buffer/Layout/BufferLayout.hpp>
@@ -30,3 +31,5 @@ namespace orb
 		GlIndexBuffer* m_indexBuffer = nullptr;
 	};
 }
+
+#endif

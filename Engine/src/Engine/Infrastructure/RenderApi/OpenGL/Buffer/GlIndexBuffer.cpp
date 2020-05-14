@@ -1,3 +1,5 @@
+#ifdef ORB_OPENGL
+
 #include <Engine/Infrastructure/RenderApi/OpenGL/Buffer/GlIndexBuffer.hpp>
 #include <glad/glad.h>
 
@@ -43,3 +45,5 @@ orb::GlIndexBuffer::~GlIndexBuffer()
 {
 	glDeleteBuffers(GL_ELEMENT_ARRAY_BUFFER, &m_eboId);
 }
+
+#endif

@@ -1,3 +1,5 @@
+#ifdef ORB_OPENGL
+
 #include <Engine/Infrastructure/RenderApi/OpenGL/Buffer/GlVertexBuffer.hpp>
 #include <utility>
 #include <glad/glad.h>
@@ -74,3 +76,5 @@ void orb::GlVertexBuffer::unBindAttribs()
 	for(auto& attrib : m_attribArray)
 		glDisableVertexAttribArray(attrib);
 }
+
+#endif

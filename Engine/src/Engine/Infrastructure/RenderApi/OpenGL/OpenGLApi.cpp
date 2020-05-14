@@ -1,3 +1,5 @@
+#ifdef ORB_OPENGL
+
 #include <Engine/Infrastructure/RenderApi/OpenGL/OpenGLApi.hpp>
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
@@ -53,3 +55,4 @@ void orb::OpenGLApi::setViewport(int x, int y, int width, int height)
 	glViewport(x, y, width, height);
 }
 
+#endif

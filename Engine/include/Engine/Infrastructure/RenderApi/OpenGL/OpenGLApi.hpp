@@ -1,4 +1,5 @@
 #pragma once
+#ifdef ORB_OPENGL
 
 #include <Engine/Core/Renderer/RenderApi.hpp>
 #include "Engine/Infrastructure/RenderApi/OpenGL/Buffer/GlVertexArray.hpp"
@@ -19,3 +20,5 @@ namespace orb
 	private:
 	};
 }
+
+#endif

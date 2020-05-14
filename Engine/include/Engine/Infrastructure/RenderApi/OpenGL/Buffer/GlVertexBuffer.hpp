@@ -1,4 +1,5 @@
 #pragma once
+#ifdef ORB_OPENGL
 
 #include <Engine/Core/Renderer/Buffer/VertexBuffer.hpp>
 #include <Engine/Core/Renderer/Buffer/Layout/BufferLayout.hpp>
@@ -25,3 +26,5 @@ namespace orb
 		static unsigned int s_boundVboId;
 	};
 }
+
+#endif

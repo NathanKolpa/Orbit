@@ -1,4 +1,5 @@
 #pragma once
+#ifdef ORB_OPENGL
 
 #include <Engine/Core/Renderer/Buffer/IndexBuffer.hpp>
 #include <cstddef>
@@ -23,3 +24,5 @@ namespace orb
 		static unsigned int s_boundEbo;
 	};
 }
+
+#endif

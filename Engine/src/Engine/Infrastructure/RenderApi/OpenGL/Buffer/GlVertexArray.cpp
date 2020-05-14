@@ -1,3 +1,5 @@
+#ifdef ORB_OPENGL
+
 #include <Engine/Infrastructure/RenderApi/OpenGL/Buffer/GlVertexArray.hpp>
 #include <glad/glad.h>
 
@@ -110,3 +112,5 @@ orb::IndexBuffer *orb::GlVertexArray::getIndexBuffer()
 {
 	return m_indexBuffer;
 }
+
+#endif

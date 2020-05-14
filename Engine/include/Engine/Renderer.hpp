@@ -1,5 +1,7 @@
 #pragma once
+#ifdef ORB_OPENGL
 #include "Engine/Infrastructure/RenderApi/OpenGL/OpenGLApi.hpp"
+#endif
 
 #include "Core/Renderer/Buffer/Layout/BufferLayout.hpp"
 #include "Core/Renderer/RenderContext.hpp"
