@@ -35,22 +35,25 @@ orb::GlVertexArray::~GlVertexArray()
 {
 	glDeleteVertexArrays(1, &m_vaoId);
 
-	for(auto& vbo : m_vboArray)
+	delete m_indexBuffer;
+
+	for (auto &vbo : m_vboArray)
 	{
 		delete vbo;
 	}
 }
 
-orb::VertexBuffer* orb::GlVertexArray::addVertexBuffer(const orb::BufferLayout &layout, float *data, size_t allocatedVertices)
+orb::VertexBuffer *
+orb::GlVertexArray::addVertexBuffer(const orb::BufferLayout &layout, float *data, size_t allocatedVertices)
 {
 #ifdef ORB_SAFE
-	if(s_boundVaoId != m_vaoId)
+	if (s_boundVaoId != m_vaoId)
 	{
 		throw std::runtime_error("VAO is not bound");
 	}
 #endif
 
-	GlVertexBuffer* buffer = GlVertexBuffer::create(layout, data, allocatedVertices);
+	GlVertexBuffer *buffer = GlVertexBuffer::create(layout, data, allocatedVertices);
 
 	m_vboArray.push_back(buffer);
 
@@ -60,17 +63,45 @@ orb::VertexBuffer* orb::GlVertexArray::addVertexBuffer(const orb::BufferLayout &
 void orb::GlVertexArray::draw(int vertices)
 {
 #ifdef ORB_SAFE
-	if(s_boundVaoId != m_vaoId)
+	if (s_boundVaoId != m_vaoId)
+	{
+		throw std::runtime_error("VAO is not bound");
+	}
+
+	if(m_indexBuffer == nullptr)
+	{
+		throw std::runtime_error("No index buffer");
+	}
+#endif
+
+	m_indexBuffer->bind();
+
+	for (auto &buffers : m_vboArray)
+		buffers->bindAttribs();
+
+	glDrawElements(GL_TRIANGLES, vertices, GL_UNSIGNED_INT, 0);
+
+	for (auto &buffers : m_vboArray)
+		buffers->unBindAttribs();
+
+	m_indexBuffer->unBind();
+}
+
+orb::IndexBuffer *orb::GlVertexArray::setIndexBuffer(unsigned int *data, size_t allocatedVertices)
+{
+#ifdef ORB_SAFE
+	if (s_boundVaoId != m_vaoId)
 	{
 		throw std::runtime_error("VAO is not bound");
 	}
 #endif
 
-	for(auto& buffers : m_vboArray)
-		buffers->bindAttribs();
+	m_indexBuffer = GlIndexBuffer::create(data, allocatedVertices);
 
-	glDrawArrays(GL_TRIANGLES, 0, vertices);
+	return m_indexBuffer;
+}
 
-	for(auto& buffers : m_vboArray)
-		buffers->unBindAttribs();
+orb::IndexBuffer *orb::GlVertexArray::getIndexBuffer()
+{
+	return m_indexBuffer;
 }

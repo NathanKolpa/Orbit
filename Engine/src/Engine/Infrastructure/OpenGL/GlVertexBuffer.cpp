@@ -41,8 +41,6 @@ orb::GlVertexBuffer::GlVertexBuffer(unsigned int vboId, std::vector<int> attribA
 
 orb::GlVertexBuffer *orb::GlVertexBuffer::create(const BufferLayout& layout, float *data, size_t allocatedVertices)
 {
-	unsigned int lastVbo = s_boundVboId;
-
 	unsigned int vbo;
 	glGenBuffers(1, &vbo);
 
@@ -61,7 +59,7 @@ orb::GlVertexBuffer *orb::GlVertexBuffer::create(const BufferLayout& layout, flo
 		attribs.push_back(element.getElementIndex());
 	}
 
-	glBindBuffer(GL_ARRAY_BUFFER, lastVbo);
+	glBindBuffer(GL_ARRAY_BUFFER, s_boundVboId);
 	return new GlVertexBuffer(vbo, attribs);
 }
 

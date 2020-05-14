@@ -15,6 +15,9 @@ void orb::Application::run(orb::Scene &scene)
 	ResizeHandler resizeHandler(m_renderApi);
 
 	auto resizeSub = m_gameWindow.get().getResizeObservable().subscribe(resizeHandler);
+	auto mouseMoveSub = m_gameWindow.get().getMouseMoveObservable().subscribe(getLoop());
+	auto keySub = m_gameWindow.get().getKeyboardKeyObservable().subscribe(getLoop());
+	auto buttonSub = m_gameWindow.get().getMouseButtonEmitter().subscribe(getLoop());
 
 	getLoop().pushScene(scene);
 }

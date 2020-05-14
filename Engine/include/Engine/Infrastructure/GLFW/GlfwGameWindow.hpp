@@ -38,9 +38,9 @@ namespace orb
 		int getWidth() override;
 		int getHeight() override;
 
-		Observable<KeyboardKeyEvent>& getKeyboardKeyObservable();
-		Observable<MouseMoveEvent>& getMouseMoveObservable();
-		Observable<MouseButtonEvent>& getMouseButtonEmitter();
+		Observable<KeyboardKeyEvent>& getKeyboardKeyObservable() override;
+		Observable<MouseMoveEvent>& getMouseMoveObservable() override;
+		Observable<MouseButtonEvent>& getMouseButtonEmitter() override;
 		Observable<ResizeEvent> &getResizeObservable() override;
 	private:
 		GlfwGameWindow(GLFWwindow* window, int width, int height, const char* title);
