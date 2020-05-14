@@ -1,8 +1,8 @@
 #pragma once
 
 #include <Engine/Core/Renderer/RenderApi.hpp>
-#include "GlVertexArray.hpp"
-#include "GlVertexBuffer.hpp"
+#include "Engine/Infrastructure/RenderApi/OpenGL/Buffer/GlVertexArray.hpp"
+#include "Engine/Infrastructure/RenderApi/OpenGL/Buffer/GlVertexBuffer.hpp"
 
 namespace orb
 {

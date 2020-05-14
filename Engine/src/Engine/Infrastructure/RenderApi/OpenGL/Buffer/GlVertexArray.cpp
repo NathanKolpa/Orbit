@@ -1,4 +1,4 @@
-#include <Engine/Infrastructure/OpenGL/GlVertexArray.hpp>
+#include <Engine/Infrastructure/RenderApi/OpenGL/Buffer/GlVertexArray.hpp>
 #include <glad/glad.h>
 
 unsigned int orb::GlVertexArray::s_boundVaoId = 0;
@@ -71,6 +71,11 @@ void orb::GlVertexArray::draw(int vertices)
 	if(m_indexBuffer == nullptr)
 	{
 		throw std::runtime_error("No index buffer");
+	}
+
+	if(vertices % 3 != 0)
+	{
+		throw std::runtime_error("Trying to draw an invalid amount of vertices");
 	}
 #endif
 

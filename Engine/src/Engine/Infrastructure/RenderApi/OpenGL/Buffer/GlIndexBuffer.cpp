@@ -1,4 +1,4 @@
-#include <Engine/Infrastructure/OpenGL/GlIndexBuffer.hpp>
+#include <Engine/Infrastructure/RenderApi/OpenGL/Buffer/GlIndexBuffer.hpp>
 #include <glad/glad.h>
 
 unsigned int orb::GlIndexBuffer::s_boundEbo = 0;
