@@ -4,6 +4,7 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include <Engine/Core/pch.hpp>
+#include <examples/imgui_impl_opengl3.h>
 
 
 void GLAPIENTRY
@@ -17,9 +18,10 @@ MessageCallback(
 		const void *userParam)
 {
 
-	auto stream = severity != 0x826b ? stderr : stdout;
+	if(severity == 0x826b)
+		return;
 
-	fprintf(stream, "GL CALLBACK: %s type = 0x%x, severity = 0x%x, message = %s\n",
+	fprintf(stderr, "GL CALLBACK: %s type = 0x%x, severity = 0x%x, message = %s\n",
 			(type == GL_DEBUG_TYPE_ERROR ? "** GL ERROR **" : ""),
 			type, severity, message);
 }
@@ -42,6 +44,8 @@ orb::OpenGLApi orb::OpenGLApi::create(orb::RenderContext &context)
 	glEnable(GL_DEBUG_OUTPUT);
 	glDebugMessageCallback(MessageCallback, nullptr);
 
+	ImGui_ImplOpenGL3_Init();
+
 	return OpenGLApi();
 }
 
@@ -54,5 +58,6 @@ void orb::OpenGLApi::setViewport(int x, int y, int width, int height)
 {
 	glViewport(x, y, width, height);
 }
+
 
 #endif

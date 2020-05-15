@@ -1,5 +1,6 @@
 #pragma once
 
+#include <Engine/Core/Renderer/RenderApi.hpp>
 #include "Scene.hpp"
 #include "Window/GameWindow.hpp"
 

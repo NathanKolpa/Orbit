@@ -15,9 +15,7 @@ void orb::GameLoop::pushScene(Scene &scene)
 			scene.update(TimeStep());
 
 			m_gameWindow->clearBuffer();
-
 			scene.render();
-
 			m_gameWindow->display();
 		}
 	}

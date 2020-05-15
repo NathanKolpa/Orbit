@@ -2,6 +2,7 @@
   <dictionary name="Nathan">
     <words>
       <w>glfw</w>
+      <w>imgui</w>
     </words>
   </dictionary>
 </component>

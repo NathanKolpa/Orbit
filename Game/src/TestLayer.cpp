@@ -1,3 +1,4 @@
+#include <imgui.h>
 #include "TestLayer.hpp"
 
 float data[] = {
@@ -32,6 +33,8 @@ void TestLayer::render()
 	m_renderer.get().beginScene();
 
 	m_renderer.get().endScene();
+
+	ImGui::ShowDemoWindow();
 }
 
 void TestLayer::unload()

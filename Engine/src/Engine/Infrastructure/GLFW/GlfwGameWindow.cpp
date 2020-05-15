@@ -1,6 +1,8 @@
 #include <Engine/Infrastructure/GLFW/GlfwGameWindow.hpp>
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
+#include <examples/imgui_impl_glfw.h>
+#include <examples/imgui_impl_opengl3.h>
 
 orb::GlfwGameWindow orb::GlfwGameWindow::createGlfwWindow(int width, int height, const char *title)
 {
@@ -88,6 +90,11 @@ void orb::GlfwGameWindow::clear()
 {
 	glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT);
+
+	ImGui_ImplOpenGL3_NewFrame();
+	ImGui_ImplGlfw_NewFrame();
+
+	ImGui::NewFrame();
 }
 
 int orb::GlfwGameWindow::getWidth()
@@ -116,6 +123,10 @@ void orb::GlfwGameWindow::initLibrary()
 	{
 		throw std::runtime_error("cannot init GLFW");
 	}
+
+	IMGUI_CHECKVERSION();
+	ImGui::CreateContext();
+	ImGuiIO& io = ImGui::GetIO(); (void)io;
 }
 
 bool orb::GlfwGameWindow::isOpen()
@@ -125,6 +136,10 @@ bool orb::GlfwGameWindow::isOpen()
 
 void orb::GlfwGameWindow::display()
 {
+	ImGui::Render();
+	ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+
+
 	glfwSwapBuffers(m_window);
 }
 
@@ -145,6 +160,7 @@ orb::Observable<orb::MouseButtonEvent> &orb::GlfwGameWindow::getMouseButtonEmitt
 
 void orb::GlfwGameWindow::setContext()
 {
+	ImGui_ImplGlfw_InitForOpenGL(m_window, true);
 	glfwMakeContextCurrent(m_window);
 }
 
