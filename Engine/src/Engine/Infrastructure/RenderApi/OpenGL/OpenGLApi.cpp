@@ -31,10 +31,8 @@ const char *orb::OpenGLApi::getVersionString()
 	return (const char *) glGetString(GL_VERSION);
 }
 
-orb::OpenGLApi orb::OpenGLApi::create(orb::RenderContext &context)
+orb::OpenGLApi orb::OpenGLApi::create()
 {
-	context.setContext();
-
 	int status = gladLoadGLLoader((GLADloadproc) glfwGetProcAddress);
 	if (!status)
 	{

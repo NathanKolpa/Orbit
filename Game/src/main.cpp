@@ -22,13 +22,14 @@ int main()
 void run()
 {
 	orb::GlfwGameWindow::initLibrary();
-	orb::GlfwGameWindow gameWindow = orb::GlfwGameWindow::createGlfwWindow(1280, 720, "Hello World");
+	orb::GlfwGameWindow glfwWindow = orb::GlfwGameWindow::createGlfwWindow(1280, 720, "Hello World");
+	glfwWindow.setContext();
 
-	orb::OpenGLApi opengl = orb::OpenGLApi::create(gameWindow);
+	orb::OpenGLApi opengl = orb::OpenGLApi::create();
 	std::cout << "Using OpenGL version: [" << opengl.getVersionString() << "]" << std::endl;
 
 	orb::Renderer2D renderer(opengl);
-	orb::Application app(opengl, gameWindow);
+	orb::Application app(opengl, glfwWindow);
 
 	orb::Scene scene;
 	TestLayer layer(renderer);

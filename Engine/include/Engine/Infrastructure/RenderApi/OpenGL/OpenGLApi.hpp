@@ -10,7 +10,7 @@ namespace orb
 	class OpenGLApi : public RenderApi
 	{
 	public:
-		static OpenGLApi create(RenderContext& context);
+		static OpenGLApi create();
 	public:
 		void setViewport(int x, int y, int width, int height) override;
 		const char *getVersionString() override;
