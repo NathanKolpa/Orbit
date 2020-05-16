@@ -74,11 +74,6 @@ void orb::GlVertexArray::draw(int vertices)
 	{
 		throw std::runtime_error("No index buffer");
 	}
-
-	if(vertices % 3 != 0)
-	{
-		throw std::runtime_error("Trying to draw an invalid amount of vertices");
-	}
 #endif
 
 	m_indexBuffer->bind();
@@ -86,7 +81,7 @@ void orb::GlVertexArray::draw(int vertices)
 	for (auto &buffers : m_vboArray)
 		buffers->bindAttribs();
 
-	glDrawElements(GL_TRIANGLES, vertices, GL_UNSIGNED_INT, 0);
+	glDrawElements(GL_TRIANGLES, vertices, GL_UNSIGNED_INT, nullptr);
 
 	for (auto &buffers : m_vboArray)
 		buffers->unBindAttribs();

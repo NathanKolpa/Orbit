@@ -1,5 +1,4 @@
 #include <Engine/Engine.hpp>
-#include <imgui.h>
 #include "TestLayer.hpp"
 
 void run();
@@ -42,6 +41,6 @@ void run()
 
 /*
 
- TODO: test multiple layouts
+ TODO: test multiple buffer layouts
 
 */

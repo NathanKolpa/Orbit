@@ -17,9 +17,8 @@ namespace orb
 		void unBind() override;
 		void setData(unsigned int *data, size_t indices) override;
 	private:
-		explicit GlIndexBuffer(unsigned int eboId);
+		explicit GlIndexBuffer(unsigned int eboI);
 	private:
-		size_t m_vertexCount;
 		unsigned int m_eboId;
 		static unsigned int s_boundEbo;
 	};

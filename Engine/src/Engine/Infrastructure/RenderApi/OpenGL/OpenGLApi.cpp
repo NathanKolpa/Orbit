@@ -4,7 +4,10 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include <Engine/Core/pch.hpp>
+
+#ifdef ORB_DEBUG
 #include <examples/imgui_impl_opengl3.h>
+#endif
 
 
 void GLAPIENTRY
@@ -42,7 +45,9 @@ orb::OpenGLApi orb::OpenGLApi::create()
 	glEnable(GL_DEBUG_OUTPUT);
 	glDebugMessageCallback(MessageCallback, nullptr);
 
+#ifdef ORB_DEBUG
 	ImGui_ImplOpenGL3_Init();
+#endif
 
 	return OpenGLApi();
 }

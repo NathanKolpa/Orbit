@@ -18,7 +18,7 @@ void orb::GlVertexBuffer::unBind()
 	s_boundVboId = 0;
 }
 
-void orb::GlVertexBuffer::setData(float *data, size_t dataSize)
+void orb::GlVertexBuffer::setData(float *data, size_t vertices)
 {
 #ifdef ORB_SAFE
 	if(s_boundVboId != m_vboId)
@@ -27,7 +27,7 @@ void orb::GlVertexBuffer::setData(float *data, size_t dataSize)
 	}
 #endif
 
-	glBufferSubData(GL_ARRAY_BUFFER, 0, dataSize, (void*)data);
+	glBufferSubData(GL_ARRAY_BUFFER, 0, vertices * m_vertexSize, (void*)data);
 }
 
 orb::GlVertexBuffer::~GlVertexBuffer()
@@ -35,8 +35,8 @@ orb::GlVertexBuffer::~GlVertexBuffer()
 	glDeleteBuffers(1, &m_vboId);
 }
 
-orb::GlVertexBuffer::GlVertexBuffer(unsigned int vboId, std::vector<int> attribArray)
-		: m_attribArray(std::move(attribArray)), m_vboId(vboId)
+orb::GlVertexBuffer::GlVertexBuffer(unsigned int vboId, std::vector<int> attribArray, int vertexSize)
+		: m_attribArray(std::move(attribArray)), m_vboId(vboId), m_vertexSize(vertexSize)
 {
 
 }
@@ -62,7 +62,7 @@ orb::GlVertexBuffer *orb::GlVertexBuffer::create(const BufferLayout& layout, flo
 	}
 
 	glBindBuffer(GL_ARRAY_BUFFER, s_boundVboId);
-	return new GlVertexBuffer(vbo, attribs);
+	return new GlVertexBuffer(vbo, attribs, layout.getTotalSizeInBytes());
 }
 
 void orb::GlVertexBuffer::bindAttribs()

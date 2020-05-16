@@ -2,6 +2,7 @@
 
 #include <Engine/Infrastructure/RenderApi/OpenGL/Buffer/GlIndexBuffer.hpp>
 #include <glad/glad.h>
+#include <stdexcept>
 
 unsigned int orb::GlIndexBuffer::s_boundEbo = 0;
 
@@ -19,7 +20,14 @@ void orb::GlIndexBuffer::unBind()
 
 void orb::GlIndexBuffer::setData(unsigned int *data, size_t indices)
 {
+#ifdef ORB_SAFE
+	if(s_boundEbo != m_eboId)
+	{
+		throw std::runtime_error("EBO is not bound");
+	}
+#endif
 
+	glBufferSubData(GL_ELEMENT_ARRAY_BUFFER, 0, indices * sizeof(unsigned int), (void*)data);
 }
 
 orb::GlIndexBuffer::GlIndexBuffer(unsigned int eboId)
@@ -28,9 +36,13 @@ orb::GlIndexBuffer::GlIndexBuffer(unsigned int eboId)
 
 }
 
+orb::GlIndexBuffer::~GlIndexBuffer()
+{
+	glDeleteBuffers(GL_ELEMENT_ARRAY_BUFFER, &m_eboId);
+}
+
 orb::GlIndexBuffer *orb::GlIndexBuffer::create(unsigned int *data, size_t allocatedVertices)
 {
-
 	unsigned int ebo;
 	glGenBuffers(1, &ebo);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo);
@@ -39,11 +51,6 @@ orb::GlIndexBuffer *orb::GlIndexBuffer::create(unsigned int *data, size_t alloca
 
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, s_boundEbo);
 	return new GlIndexBuffer(ebo);
-}
-
-orb::GlIndexBuffer::~GlIndexBuffer()
-{
-	glDeleteBuffers(GL_ELEMENT_ARRAY_BUFFER, &m_eboId);
 }
 
 #endif
