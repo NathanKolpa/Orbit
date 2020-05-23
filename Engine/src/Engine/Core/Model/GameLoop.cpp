@@ -14,8 +14,11 @@ void orb::GameLoop::pushScene(Scene &scene)
 
 			scene.update(TimeStep());
 
+			m_renderApi.get().clear();
 			m_gameWindow->clearBuffer();
+
 			scene.render();
+
 			m_gameWindow->display();
 		}
 	}
@@ -51,8 +54,8 @@ void orb::GameLoop::popScene()
 	m_shouldPop = true;
 }
 
-orb::GameLoop::GameLoop(orb::GameWindow &window)
-	:m_gameWindow(&window)
+orb::GameLoop::GameLoop(orb::GameWindow &window, RenderApi& api)
+	:m_gameWindow(&window), m_renderApi(api)
 {
 
 }

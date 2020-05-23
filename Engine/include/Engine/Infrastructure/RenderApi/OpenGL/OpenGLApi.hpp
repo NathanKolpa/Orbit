@@ -12,6 +12,7 @@ namespace orb
 	public:
 		static OpenGLApi create();
 	public:
+		void clear() override;
 		void setViewport(int x, int y, int width, int height) override;
 		const char *getVersionString() override;
 		VertexArray *createVertexArray() override;

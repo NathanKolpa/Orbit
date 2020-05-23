@@ -9,7 +9,7 @@ namespace orb
 	class GameLoop : public InputObserver
 	{
 	public:
-		GameLoop(GameWindow& window);
+		GameLoop(GameWindow& window, RenderApi& api);
 	public:
 		void popScene();
 		void pushScene(Scene& scene);
@@ -27,5 +27,6 @@ namespace orb
 		std::optional<Scene> m_nextScene;
 		Scene* m_topScene = nullptr;
 		GameWindow* m_gameWindow;
+		std::reference_wrapper<RenderApi> m_renderApi;
 	};
 }

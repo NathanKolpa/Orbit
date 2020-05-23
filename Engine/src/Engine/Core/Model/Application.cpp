@@ -6,7 +6,7 @@ orb::GameLoop &orb::Application::getLoop()
 }
 
 orb::Application::Application(RenderApi& renderApi, GameWindow &window)
-		: m_gameLoop(window), m_renderApi(renderApi), m_gameWindow(window)
+		: m_gameLoop(window, renderApi), m_renderApi(renderApi), m_gameWindow(window)
 {
 }
 

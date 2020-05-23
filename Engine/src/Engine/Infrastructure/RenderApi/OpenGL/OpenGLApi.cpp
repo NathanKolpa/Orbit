@@ -62,5 +62,11 @@ void orb::OpenGLApi::setViewport(int x, int y, int width, int height)
 	glViewport(x, y, width, height);
 }
 
+void orb::OpenGLApi::clear()
+{
+	glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
+	glClear(GL_COLOR_BUFFER_BIT);
+}
+
 
 #endif
