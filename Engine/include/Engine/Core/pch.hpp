@@ -6,6 +6,7 @@
 #include <iostream>
 #include <functional>
 #include <unordered_map>
+#include <cstddef>
 
 #include <glm/common.hpp>
 #include <glm/vec2.hpp>

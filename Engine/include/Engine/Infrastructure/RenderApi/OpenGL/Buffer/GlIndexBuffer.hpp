@@ -9,13 +9,13 @@ namespace orb
 	class GlIndexBuffer : public IndexBuffer
 	{
 	public:
-		static GlIndexBuffer* create(unsigned int *data, size_t allocatedVertices);
+		static GlIndexBuffer* create(unsigned int *data, std::size_t allocatedVertices);
 	public:
 		~GlIndexBuffer();
 	public:
 		void bind() override;
 		void unBind() override;
-		void setData(unsigned int *data, size_t indices) override;
+		void setData(unsigned int *data, std::size_t indices) override;
 	private:
 		explicit GlIndexBuffer(unsigned int eboI);
 	private:
