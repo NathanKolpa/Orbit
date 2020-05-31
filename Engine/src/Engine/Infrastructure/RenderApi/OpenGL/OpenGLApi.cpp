@@ -70,7 +70,7 @@ void orb::OpenGLApi::clear()
 
 orb::Shader *orb::OpenGLApi::createShader(const orb::ShaderResource &source)
 {
-	return nullptr;
+	return GlShader::create(source.requireOpenglVertexShader().getSource(), source.requireOpenglFragmentShader().getSource());
 }
 
 

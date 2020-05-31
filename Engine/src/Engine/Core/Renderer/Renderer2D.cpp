@@ -1,4 +1,19 @@
 #include <Engine/Core/Renderer/Renderer2D.hpp>
+#include <Engine/Core/Renderer/Shader/StringShaderSource.hpp>
+
+const char *vertexShaderSource = "#version 410\n"
+								 "layout (location = 0) in vec2 aPos;\n"
+								 "void main()\n"
+								 "{\n"
+								 "   gl_Position = vec4(aPos.x, aPos.y, 0.0, 1.0);\n"
+								 "}\0";
+const char *fragmentShaderSource = "#version 410\n"
+								   "out vec4 FragColor;\n"
+								   "void main()\n"
+								   "{\n"
+								   "   FragColor = vec4(1.0f, 0.5f, 0.2f, 1.0f);\n"
+								   "}\n\0";
+
 
 orb::Renderer2D::Renderer2D(orb::RenderApi &api)
 		: m_renderApi(api)
@@ -12,6 +27,12 @@ orb::Renderer2D::Renderer2D(orb::RenderApi &api)
 	m_ebo = m_vao->setIndexBuffer(nullptr, m_maxIndices);
 
 	m_vao->unBind();
+
+	StringShaderSource vertexSource(vertexShaderSource);
+	StringShaderSource fragmentSource(fragmentShaderSource);
+	ShaderResource shaderResource(&vertexSource, &fragmentSource);
+
+	m_shader = api.createShader(shaderResource);
 }
 
 void orb::Renderer2D::beginScene()
@@ -28,6 +49,7 @@ void orb::Renderer2D::flush()
 {
 	if (m_indexCount != 0)
 	{
+		//set data
 		m_vbo->bind();
 		m_vbo->setData(m_vertexArray, m_vertexCount);
 		m_vbo->unBind();
@@ -36,9 +58,14 @@ void orb::Renderer2D::flush()
 		m_ebo->setData(m_indexArray, m_indexCount);
 		m_ebo->unBind();
 
+		//draw the vao
+		m_shader->bind();
+
 		m_vao->bind();
 		m_vao->draw(m_indexCount);
 		m_vao->unBind();
+
+		m_shader->unBind();
 
 		m_drawCalls++;
 	}
@@ -87,6 +114,7 @@ orb::RenderApi &orb::Renderer2D::getApi()
 orb::Renderer2D::~Renderer2D()
 {
 	delete m_vao;
+	delete m_shader;
 }
 
 int orb::Renderer2D::getTotalDrawCalls() const

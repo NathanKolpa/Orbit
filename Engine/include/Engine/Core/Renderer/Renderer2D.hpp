@@ -23,6 +23,7 @@ namespace orb
 	private:
 		void flush();
 	private:
+		Shader* m_shader;
 		std::reference_wrapper<RenderApi> m_renderApi;
 		VertexArray* m_vao;
 		VertexBuffer* m_vbo;

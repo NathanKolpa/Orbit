@@ -126,6 +126,10 @@ void orb::GlfwGameWindow::initLibrary()
 		throw std::runtime_error("cannot init GLFW");
 	}
 
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_COMPAT_PROFILE);
+
 #ifdef ORB_DEBUG
 	IMGUI_CHECKVERSION();
 	ImGui::CreateContext();

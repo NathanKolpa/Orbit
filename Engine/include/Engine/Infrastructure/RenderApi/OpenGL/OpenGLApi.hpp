@@ -4,6 +4,7 @@
 #include <Engine/Core/Renderer/RenderApi.hpp>
 #include "Engine/Infrastructure/RenderApi/OpenGL/Buffer/GlVertexArray.hpp"
 #include "Engine/Infrastructure/RenderApi/OpenGL/Buffer/GlVertexBuffer.hpp"
+#include "Engine/Infrastructure/RenderApi/OpenGL/Shader/GlShader.hpp"
 
 namespace orb
 {
