@@ -7,7 +7,9 @@ int main()
 {
 	try
 	{
+		orb::GlfwGameWindow::initLibrary();
 		run();
+		orb::GlfwGameWindow::destroyLibrary();
 
 		std::cout << "Exited gracefully" << std::endl;
 	}
@@ -20,7 +22,6 @@ int main()
 
 void run()
 {
-	orb::GlfwGameWindow::initLibrary();
 	orb::GlfwGameWindow glfwWindow = orb::GlfwGameWindow::createGlfwWindow(1280, 720, "Hello World");
 	glfwWindow.setContext();
 
@@ -35,8 +36,6 @@ void run()
 	scene.getLayers().pushLayer(layer);
 
 	app.run(scene);
-
-	orb::GlfwGameWindow::destroyLibrary();
 }
 
 /*

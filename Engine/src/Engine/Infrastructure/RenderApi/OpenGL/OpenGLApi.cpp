@@ -68,5 +68,10 @@ void orb::OpenGLApi::clear()
 	glClear(GL_COLOR_BUFFER_BIT);
 }
 
+orb::Shader *orb::OpenGLApi::createShader(const orb::ShaderResource &source)
+{
+	return nullptr;
+}
+
 
 #endif

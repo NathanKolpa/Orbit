@@ -37,7 +37,8 @@ orb::GlVertexArray::~GlVertexArray()
 {
 	glDeleteVertexArrays(1, &m_vaoId);
 
-	delete m_indexBuffer;
+	if(!m_indexBuffer)
+		delete m_indexBuffer;
 
 	for (auto &vbo : m_vboArray)
 	{

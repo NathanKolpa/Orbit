@@ -15,7 +15,9 @@ namespace orb
 		void clear() override;
 		void setViewport(int x, int y, int width, int height) override;
 		const char *getVersionString() override;
+
 		VertexArray *createVertexArray() override;
+		Shader *createShader(const ShaderResource &source) override;
 	private:
 		OpenGLApi() = default;
 	private:
