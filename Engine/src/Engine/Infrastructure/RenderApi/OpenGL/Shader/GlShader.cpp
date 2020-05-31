@@ -21,7 +21,6 @@ unsigned int compileShader(unsigned int type, const std::string& source)
 	if (!success)
 	{
 		glGetShaderInfoLog(shader, 512, NULL, infoLog);
-		std::cout << infoLog;
 		throw orb::ShaderCompileException(infoLog);
 	}
 
